@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://unicons.iconscout.com/release/v4.0.0/css/line.css"
+    />
+
+    <title>To Do List</title>
+
+    <style>
+      :root {
+        --icons-color: #4c5773;
+        --icons-bg-color: #e2e6e9;
+        --shadow-dark-color: #d3dae7;
+        --shadow-light-color: #fff;
+        --main-bg-color: #ecf0f3;
+
+        --box-shadow: 1rem 1rem 1rem var(--shadow-dark-color),
+          -1rem -1rem 1rem var(--shadow-light-color);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background: var(--main-bg-color);
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        position: absolute;
+      }
+
+      .app {
+        width: 300px;
+        height: 500px;
+        background: var(--main-bg-color);
+        box-shadow: var(--box-shadow);
+        padding: 2rem;
+        border-radius: 2rem;
+        overflow: hidden;
+      }
+
+      .app .app-info {
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        margin-bottom: 2rem;
+        
+      }
+
+      .app-info i {
+        font-size: 45px;
+        background: var(--icons-color);
+        padding: 0.5rem;
+        color: var(--main-bg-color);
+        margin-right: 1rem;
+        border-radius: 30%;
+      }
+
+      h1 {
+        color: var(--icons-color);
+        font-family: "Times New Roman", Times, serif;
+      }
+
+      .dotolist-conatiner {
+        width: 100%;
+        height: 80%;
+      }
+
+      .dotolist-conatiner .inputField {
+        background: var(--main-bg-color);
+        box-shadow: var(--box-shadow);
+        border-radius: 1rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      input {
+        width: 80%;
+        height: 40px;
+        outline: none;
+        border: none;
+
+        background: var(--main-bg-color);
+      }
+
+      .inputField input[type="text"] {
+        margin-left: 1rem;
+      }
+
+      .inputField i {
+        font-size: 20px;
+        margin-right: 1rem;
+        cursor: pointer;
+      }
+
+      .create-div {
+        width: 100%;
+        height: 40px;
+        background: var(--icons-bg-color);
+        margin-top: 1rem;
+        border-radius: 1rem;
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        padding-left: 1rem;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="app">
+      <div class="app-info">
+        <i class="uil uil-adjust-circle"></i>
+        <h1>ToDo List</h1>
+      </div>
+      <div class="dotolist-conatiner">
+        <div class="inputField">
+          <input type="text" placeholder="type your list.." id="input" />
+          <i class="uil uil-plus"></i>
+        </div>
+        <div class="add-list"></div>
+      </div>
+    </div>
+
+    <script>
+      const addList = document.querySelector(".add-list");
+      const addBtn = document.querySelector(".uil-plus");
+      const inputField = document.getElementById("input");
+
+      addBtn.addEventListener('click', ()=>{
+          
+        const createElement = document.createElement('div');
+        createElement.classList.add('create-div');
+        createElement.innerText = inputField.value;
+        addList.appendChild(createElement);
+        inputField.value = "";
+
+
+        createElement.addEventListener('click', ()=>{
+            createElement.style.textDecoration = 'line-through'
+        })
+
+        createElement.addEventListener('dblclick', ()=>{
+            addList.removeChild(createElement);
+        })
+
+      })
+    </script>
+  </body>
+</html>
